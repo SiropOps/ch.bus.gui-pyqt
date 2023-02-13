@@ -25,7 +25,7 @@ class MainWindow(QMainWindow):
         wifiBtn.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         wifiBtn.setCheckable(True)
         wifiBtn.clicked.connect(
-            lambda: self.the_button_was_clicked(wifiBtn))
+            lambda: self.wifiBtn_clicked(wifiBtn))
 
         layout.addWidget(wifiBtn, 0, 0)
 
@@ -46,8 +46,8 @@ class MainWindow(QMainWindow):
         widget.setLayout(layout)
         self.setCentralWidget(widget)
 
-    def the_button_was_clicked(self, button):
-        if self.action.the_button_was_clicked() is False:
+    def wifiBtn_clicked(self, button):
+        if self.action.wifi(button.isChecked()) is False:
             button.setStyleSheet("background-color: red")
             # button.setAutoFillBackground(True)
 

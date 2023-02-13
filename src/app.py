@@ -1,9 +1,16 @@
 # Only needed for access to command line arguments
 import sys
+import logging
 
 from PyQt5.QtWidgets import QApplication, QWidget
 
 from windows.window import MainWindow
+
+
+logging.basicConfig(
+        format='%(asctime)s %(levelname)-8s %(message)s',
+        level=logging.INFO,
+        datefmt='%Y-%m-%d %H:%M:%S')
 
 # You need one (and only one) QApplication instance per application.
 # Pass in sys.argv to allow command line arguments for your app.
