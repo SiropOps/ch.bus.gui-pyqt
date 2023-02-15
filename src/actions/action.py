@@ -54,8 +54,9 @@ class Action(object):
         # TODO
     
     def over(self):
-        logging.info("over click")
-        # TODO
+        os.system('sudo shutdown')
+        os.system('ssh pi@192.168.8.200 \'sudo shutdown\'')
+        os.system('ssh pi@192.168.8.210 \'sudo shutdown\'')
     
 
-    # ssh pi@192.168.255.10 'sudo df -h'
+    # 

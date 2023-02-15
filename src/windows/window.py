@@ -66,14 +66,12 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(widget)
 
     def wifiBtn_clicked(self, button):
-        # if self.action.wifi(button.isChecked()) is False:
-        #     button.setStyleSheet("background-color: red")
-        # el
-        if button.isChecked() is True:
+        if self.action.wifi(button.isChecked()) is False:
+            button.setStyleSheet("background-color: red")
+        elif button.isChecked() is True:
             button.setStyleSheet("background-color: green")
         elif button.isChecked() is False:
-            button.setStyleSheet("background-color: transparent")
-            
+            button.setStyleSheet("background-color: yellow")
 
 
 class Color(QWidget):
