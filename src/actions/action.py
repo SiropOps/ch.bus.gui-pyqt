@@ -31,13 +31,13 @@ class Action(object):
 
         return False
     def shutdown(self):
-        os.system('sudo shutdown')
+        os.system('sudo shutdown -h now')
 
     def vpn(self):
         logging.info("vpn click")
         # TODO
     
     def over(self):
-        os.system('sudo shutdown -h now')
         os.system('ssh pi@192.168.8.200 \'sudo shutdown -h now\'')
         os.system('ssh pi@192.168.8.210 \'sudo shutdown -h now\'')
+        self.shutdown()
