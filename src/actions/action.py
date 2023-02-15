@@ -9,28 +9,12 @@ mac = "FC:A8:9A:00:0D:9E"
 
 
 class Action(object):
-    def __init__(self):
-        self.blte_connected = False
-        self.__reconnectBlte()
-    
-    def __reconnectBlte(self):
-        try:
-            self.blte = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
-            self.blte.connect((mac, 1))
-            self.blte_connected = True
-        except Exception as e:
-            logging.error('General error: ' + str(e))
-            self.blte_connected = False
-
-
+    # def __init__(self):
+        
     def wifi(self, enabled):
         try:
-            if self.blte_connected is False:
-                self.__reconnectBlte();
-
-            if self.blte_connected is False:
-                return False
-            
+            self.blte = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
+            self.blte.connect((mac, 1))            
             if enabled is True:
                 self.blte.send("1")
             else:
