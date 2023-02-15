@@ -29,31 +29,51 @@ class MainWindow(QMainWindow):
 
         layout.addWidget(wifiBtn, 0, 0)
 
-        button = QPushButton("Press Me! 2")
-        button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        button.setCheckable(True)
-        layout.addWidget(button, 0, 1)
+        vpnBtn = QPushButton(
+            icon=QIcon("./icons/network-cloud.png"),
+            text="VPN UP/DOWN",
+            parent=self
+        )
 
-        button = QPushButton("Press Me! 3")
-        button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        layout.addWidget(button, 1, 0)
+        vpnBtn.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        vpnBtn.clicked.connect(self.action.vpn)
 
-        button = QPushButton("Press Me! 4")
-        button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        layout.addWidget(button, 1, 1)
+        layout.addWidget(vpnBtn, 0, 1)
+
+        shutdownBtn = QPushButton(
+            icon=QIcon("./icons/control-power.png"),
+            text="ShutDown",
+            parent=self
+        )
+
+        shutdownBtn.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        shutdownBtn.clicked.connect(self.action.shutdown)
+
+        layout.addWidget(shutdownBtn, 1, 0)
+
+        overBtn = QPushButton(
+            icon=QIcon("./icons/thumb.png"),
+            text="La Fête est Finie!",
+            parent=self
+        )
+
+        overBtn.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        overBtn.clicked.connect(self.action.over)
+        layout.addWidget(overBtn, 1, 1)
 
         widget = QWidget()
         widget.setLayout(layout)
         self.setCentralWidget(widget)
 
     def wifiBtn_clicked(self, button):
-        if self.action.wifi(button.isChecked()) is False:
-            button.setStyleSheet("background-color: red")
-            # button.setAutoFillBackground(True)
-
-            # palette = button.palette()
-            # palette.setColor(QPalette.Window, QColor('red'))
-            # button.setPalette(palette)
+        # if self.action.wifi(button.isChecked()) is False:
+        #     button.setStyleSheet("background-color: red")
+        # el
+        if button.isChecked() is True:
+            button.setStyleSheet("background-color: green")
+        elif button.isChecked() is False:
+            button.setStyleSheet("background-color: transparent")
+            
 
 
 class Color(QWidget):

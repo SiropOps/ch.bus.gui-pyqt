@@ -1,5 +1,6 @@
 import logging
 from time import sleep
+import os
 
 import bluetooth
 
@@ -8,25 +9,53 @@ mac = "FC:A8:9A:00:0D:9E"
 
 
 class Action(object):
-    # def __init__(self):
+    def __init__(self):
+        self.blte_connected = False
+        self.__reconnectBlte()
+    
+    def __reconnectBlte(self):
+        try:
+            self.blte = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
+            self.blte.connect((mac, 1))
+            self.blte_connected = True
+        except Exception as e:
+            logging.error('General error: ' + str(e))
+            self.blte_connected = False
+
 
     def wifi(self, enabled):
         try:
-            driver_socket = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
-            driver_socket.connect((mac, 1))
-            sleep(1)
+            if self.blte_connected is False:
+                self.__reconnectBlte();
+
+            if self.blte_connected is False:
+                return False
+            
             if enabled is True:
-                driver_socket.send("1")
+                self.blte.send("1")
             else:
-                driver_socket.send("0")
+                self.blte.send("0")
             print("Sent Message!")
-            data = driver_socket.recv(1024)
+            data = self.blte.recv(1024)
             logging.info("raw data: {}".format(data))
-            driver_socket.getsockname()
-            driver_socket.getpeername()
-            driver_socket.close()
+            self.blte.getsockname()
+            self.blte.getpeername()
+            self.blte.close()
             return True
         except Exception as e:
             logging.error('General error: ' + str(e))
 
         return False
+    def shutdown(self):
+        os.system('sudo shutdown')
+
+    def vpn(self):
+        logging.info("vpn click")
+        # TODO
+    
+    def over(self):
+        logging.info("over click")
+        # TODO
+    
+
+    # ssh pi@192.168.255.10 'sudo df -h'
