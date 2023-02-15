@@ -38,9 +38,6 @@ class Action(object):
         # TODO
     
     def over(self):
-        os.system('sudo shutdown')
-        os.system('ssh pi@192.168.8.200 \'sudo shutdown\'')
-        os.system('ssh pi@192.168.8.210 \'sudo shutdown\'')
-    
-
-    # 
+        os.system('sudo shutdown -h now')
+        os.system('ssh pi@192.168.8.200 \'sudo shutdown -h now\'')
+        os.system('ssh pi@192.168.8.210 \'sudo shutdown -h now\'')
