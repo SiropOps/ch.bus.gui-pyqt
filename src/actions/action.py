@@ -1,6 +1,7 @@
 import logging
-from time import sleep
 import os
+from threading import Thread
+from time import sleep
 
 import bluetooth
 
@@ -10,11 +11,11 @@ mac = "FC:A8:9A:00:0D:9E"
 
 class Action(object):
     # def __init__(self):
-        
+
     def wifi(self, enabled):
         try:
             self.blte = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
-            self.blte.connect((mac, 1))            
+            self.blte.connect((mac, 1))
             if enabled is True:
                 self.blte.send("1")
             else:
@@ -30,14 +31,35 @@ class Action(object):
             logging.error('General error: ' + str(e))
 
         return False
+
     def shutdown(self):
         os.system('sudo shutdown -h now')
 
     def vpn(self):
-        logging.info("vpn click")
-        # TODO
-    
+        thread = Thread(target=self.__os_call, args=(
+            'ssh pi@192.168.8.200 \'sudo -u pi sudo openvpn --config bora-bora.ovpn --daemon bus\'', ))
+        thread.start()
+
+        thread = Thread(target=self.__os_call, args=(
+            'ssh pi@192.168.8.210 \'sudo -u pi sudo openvpn --config hiva-oa.ovpn --daemon bus\'', ))
+        thread.start()
+
+        thread = Thread(target=self.__os_call, args=(
+            'sudo -u pi sudo openvpn --config raivavae.ovpn --daemon bus', ))
+        thread.start()
+
     def over(self):
-        os.system('ssh pi@192.168.8.200 \'sudo shutdown -h now\'')
-        os.system('ssh pi@192.168.8.210 \'sudo shutdown -h now\'')
-        os.system('sudo shutdown')
+        thread = Thread(target=self.__os_call, args=(
+            'ssh pi@192.168.8.200 \'sudo shutdown -h now\'', ))
+        thread.start()
+
+        thread = Thread(target=self.__os_call, args=(
+            'ssh pi@192.168.8.210 \'sudo shutdown -h now\'', ))
+        thread.start()
+
+        thread = Thread(target=self.__os_call, args=(
+            'sudo shutdown', ))
+        thread.start()
+
+    def __os_call(self, command):
+        os.system(command)

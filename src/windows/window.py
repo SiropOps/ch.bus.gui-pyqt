@@ -17,7 +17,7 @@ class MainWindow(QMainWindow):
         layout = QGridLayout()
 
         wifiBtn = QPushButton(
-            icon=QIcon("./icons/wi-fi.png"),
+            icon=QIcon("/home/pi/ch.bus.gui-pyqt/src/icons/wi-fi.png"),
             text="Wifi UP/DOWN",
             parent=self
         )
@@ -30,7 +30,7 @@ class MainWindow(QMainWindow):
         layout.addWidget(wifiBtn, 0, 0)
 
         vpnBtn = QPushButton(
-            icon=QIcon("./icons/network-cloud.png"),
+            icon=QIcon("/home/pi/ch.bus.gui-pyqt/src/icons/network-cloud.png"),
             text="VPN UP/DOWN",
             parent=self
         )
@@ -42,7 +42,7 @@ class MainWindow(QMainWindow):
         layout.addWidget(vpnBtn, 0, 1)
 
         shutdownBtn = QPushButton(
-            icon=QIcon("./icons/control-power.png"),
+            icon=QIcon("/home/pi/ch.bus.gui-pyqt/src/icons/control-power.png"),
             text="ShutDown",
             parent=self
         )
@@ -54,7 +54,7 @@ class MainWindow(QMainWindow):
         layout.addWidget(shutdownBtn, 1, 0)
 
         overBtn = QPushButton(
-            icon=QIcon("./icons/thumb.png"),
+            icon=QIcon("./home/pi/ch.bus.gui-pyqt/src/icons/thumb.png"),
             text="La Fête est Finie!",
             parent=self
         )
