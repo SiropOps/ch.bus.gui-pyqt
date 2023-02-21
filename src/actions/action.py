@@ -37,11 +37,11 @@ class Action(object):
 
     def vpn(self):
         thread = Thread(target=self.__os_call, args=(
-            'ssh pi@192.168.8.200 \'sudo -u pi sudo openvpn --config /home/pi/bora-bora.ovpn --daemon bus\'', ))
+            'ssh pi@192.168.8.200 \'sudo -u bus sudo openvpn --config /home/bus/bora-bora.ovpn --daemon bus\'', ))
         thread.start()
 
         thread = Thread(target=self.__os_call, args=(
-            'ssh pi@192.168.8.210 \'sudo -u pi sudo openvpn --config /home/pi/hiva-oa.ovpn --daemon bus\'', ))
+            'ssh pi@192.168.8.210 \'sudo -u bus sudo openvpn --config /home/bus/hiva-oa.ovpn --daemon bus\'', ))
         thread.start()
 
         thread = Thread(target=self.__os_call, args=(
