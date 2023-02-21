@@ -36,6 +36,7 @@ class MainWindow(QMainWindow):
         )
 
         vpnBtn.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        vpnBtn.setCheckable(True)
         vpnBtn.clicked.connect(self.action.vpn)
 
         layout.addWidget(vpnBtn, 0, 1)
@@ -47,6 +48,7 @@ class MainWindow(QMainWindow):
         )
 
         shutdownBtn.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        shutdownBtn.setCheckable(True)
         shutdownBtn.clicked.connect(self.action.shutdown)
 
         layout.addWidget(shutdownBtn, 1, 0)
@@ -58,6 +60,7 @@ class MainWindow(QMainWindow):
         )
 
         overBtn.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        overBtn.setCheckable(True)
         overBtn.clicked.connect(self.action.over)
         layout.addWidget(overBtn, 1, 1)
 
