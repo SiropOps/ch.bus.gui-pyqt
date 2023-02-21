@@ -40,4 +40,4 @@ class Action(object):
     def over(self):
         os.system('ssh pi@192.168.8.200 \'sudo shutdown -h now\'')
         os.system('ssh pi@192.168.8.210 \'sudo shutdown -h now\'')
-        self.shutdown()
+        os.system('sudo shutdown')
